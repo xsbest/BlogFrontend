@@ -8,6 +8,7 @@ import {
   FireOutlined,
   VideoCameraOutlined,
 } from '@ant-design/icons'
+import { Author } from '../components/Author'
 export default function Home() {
   const [mylist, setMylist] = useState([
     {
@@ -46,7 +47,7 @@ export default function Home() {
             dataSource={mylist}
             renderItem={(item) => {
               return (
-                <List.Item style={{ borderBottom: '1px solid #ccc' }}>
+                <List.Item style={{ borderBottom: '1px solid #eee' }}>
                   <div className={styles.title}>{item.title}</div>
                   <div className={styles.labels}>
                     <span>
@@ -70,7 +71,9 @@ export default function Home() {
           ></List>
         </div>
 
-        <div className={styles.right}>123</div>
+        <div className={styles.right}>
+          <Author></Author>
+        </div>
       </div>
     </div>
   )

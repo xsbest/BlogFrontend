@@ -1,8 +1,8 @@
 import React from 'react'
-import style from './index.module.less'
+import styles from './index.module.less'
 import Image from 'next/image'
 import headPic from '../../public/head.jpg'
-import { Row, Col, Menu } from 'antd'
+import { Menu } from 'antd'
 import {
   HomeOutlined,
   VideoCameraOutlined,
@@ -10,16 +10,17 @@ import {
 } from '@ant-design/icons'
 const Header = () => {
   return (
-    <div className={style.header}>
-      <div className={style.left}>
-        <div className={style.headPic}>
+    <div className={styles.header}>
+      <div className={styles.left}>
+        {/* <div className={styles.headPic}>
           <Image src={headPic} width={60} height={60} alt=""></Image>
-        </div>
-        <span className={style['header-logo']}>Daniel ____</span>
-        <span className={style['header-logo']}>一个热爱生活的切图仔</span>
+        </div> */}
+        <span className={styles['header-name']}>Daniel ____</span>
+        <span className={[styles['print-text']]
+          .join(' ')}>一个热爱生活的切图仔</span>
       </div>
 
-      <div className={style.right}>
+      <div className={styles.right}>
         <Menu mode="horizontal">
           <Menu.Item key="home" icon={<HomeOutlined />}>
             首页

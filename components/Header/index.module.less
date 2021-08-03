@@ -1,3 +1,11 @@
+@keyframes print{
+  0%{
+
+  }
+  100%{
+    width: 150px;
+  }
+}
 .header {
   display: flex;
   justify-content: space-between;
@@ -10,6 +18,18 @@
     margin-left: 300px;
     align-items: center;
     color: rgb(223, 152, 60);
+    .header-name{
+      font-size: 25px;
+      font-weight: 600;
+    }
+    .print-text{
+      overflow: hidden;
+      display: block;
+      border-right: 1px solid #ccc;
+      width: 14px;
+      height: 20px;
+      animation: print 3s steps(10) forwards;
+    }
     .headPic {
       border-radius: 100%;
       box-shadow: 0px 0px 7px rgb(223, 152, 60);
