@@ -5,13 +5,15 @@ import { Author } from '../components/Author'
 import Adverts from './../components/Adverts/index'
 import Footer from './../components/Footer/index'
 import MyList from './../components/List/index'
-export default function Home() {
+import axios from 'axios'
+const Home = (props) => {
+  const { data } = props;
   return (
     <div className={styles.container}>
       <Header />
       <div className={styles.main}>
         <div className={styles.left}>
-          <MyList />
+          <MyList source={data} />
         </div>
         <div className={styles.right}>
           <Author></Author>
@@ -22,3 +24,13 @@ export default function Home() {
     </div>
   )
 }
+
+Home.getInitialProps = async () => {
+  const promise = new Promise(resolve => {
+    axios('http://127.0.0.1:7001/list').then((res) => {
+      resolve(res.data);
+    })
+  })
+  return await promise
+}
+export default Home
