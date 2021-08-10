@@ -101,7 +101,6 @@ export default function Home() {
             <Link href="#p1" title="Static demo" />
             <Link href="#p5" title="API"></Link>
           </Anchor>
-          ,
         </div>
       </div>
       <Footer />
