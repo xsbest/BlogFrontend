@@ -9,8 +9,8 @@ import {
 import Link from 'next/link'
 export default function MyList(props) {
   const { source } = props
-  console.log(source, 15564);
   const [mylist, setMylist] = useState(source)
+  console.log(mylist);
   return (
     <div>
       <List
@@ -22,6 +22,7 @@ export default function MyList(props) {
         }
         dataSource={mylist}
         renderItem={(item) => {
+          console.log(item.id);
           return (
             <List.Item style={{ borderBottom: '1px solid #eee' }}>
               <div className={styles.title}>
@@ -33,7 +34,7 @@ export default function MyList(props) {
                 <span>
                   <CalendarOutlined />
                   &nbsp;
-                  {(new Date(item.addTime)).toLocaleString()}
+                  {item.addTime}
                 </span>
                 <span>
                   <VideoCameraOutlined />

@@ -12,6 +12,7 @@ import {
   VideoCameraOutlined,
 } from '@ant-design/icons'
 import { markdown } from './md'
+import axios from 'axios'
 const { Link } = Anchor
 
 const Detail = () => {
@@ -26,7 +27,6 @@ const Detail = () => {
         </div>
       )
     })
-    console.log(transferArr);
     return transferArr
   }
 
@@ -85,7 +85,15 @@ const Detail = () => {
   )
 }
 Detail.getInitialProps = async (ctx) => {
-  console.log(ctx.query.id);
-  return {}
+  const id = ctx.query.id
+  console.log(ctx);
+  const promise = new Promise((resolve) => {
+    axios('http://localhost:7001/getArticleById?id=' + id).then(res => {
+      console.log(res);
+      resolve(res)
+    })
+  })
+  const res = await promise
+  return res
 }
 export default Detail
