@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styles from './index.module.less'
-import Image from 'next/image'
-import headPic from '../../public/head.jpg'
+import axios from 'axios'
+import apiUrl from '../../config/apiUrl'
+import Router from 'next/router'
 import { Menu } from 'antd'
 import {
   HomeOutlined,
@@ -9,6 +10,21 @@ import {
   SmileOutlined,
 } from '@ant-design/icons'
 const Header = () => {
+  const [navArray, setNavArray] = useState([])
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await axios(apiUrl.getTypeInfo)
+      setNavArray(res.data.data)
+    }
+    fetchData()
+  }, [])
+  const handleClick = (e) => {
+    if (e.key === 'home') {
+      Router.push('/')
+    } else {
+      Router.push('/List?id=' + e.key)
+    }
+  }
   return (
     <div className={styles.header}>
       <div className={styles.left}>
@@ -22,13 +38,13 @@ const Header = () => {
 
       <div className={styles.right}>
         <Menu mode="horizontal">
-          <Menu.Item key="home" icon={<HomeOutlined />}>
+          <Menu.Item key="0" onClick={handleClick} icon={<HomeOutlined />}>
             首页
           </Menu.Item>
-          <Menu.Item key="video" icon={<VideoCameraOutlined />}>
+          <Menu.Item key="1" onClick={handleClick} icon={<VideoCameraOutlined />}>
             视频
           </Menu.Item>
-          <Menu.Item key="life" icon={<SmileOutlined />}>
+          <Menu.Item key="2" onClick={handleClick} icon={<SmileOutlined />}>
             生活
           </Menu.Item>
         </Menu>

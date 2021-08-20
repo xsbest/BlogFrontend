@@ -6,6 +6,7 @@ import Adverts from './../components/Adverts/index'
 import Footer from './../components/Footer/index'
 import MyList from './../components/List/index'
 import axios from 'axios'
+import apiUrl from '../config/apiUrl'
 const Home = (props) => {
   const { data } = props;
   return (
@@ -27,7 +28,7 @@ const Home = (props) => {
 
 Home.getInitialProps = async () => {
   const promise = new Promise(resolve => {
-    axios('http://127.0.0.1:7001/list').then((res) => {
+    axios(apiUrl.getArticleList).then((res) => {
       resolve(res.data);
     })
   })

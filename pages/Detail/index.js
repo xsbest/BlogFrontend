@@ -13,10 +13,12 @@ import {
 } from '@ant-design/icons'
 import { markdown } from './md'
 import axios from 'axios'
+import apiUrl from '../../config/apiUrl'
 const { Link } = Anchor
 
-const Detail = () => {
+const Detail = (props) => {
 
+  console.log(props.article_content);
   const getTransferMd = (markdown) => {
     const getStrArr = markdown.split('#')
     getStrArr.shift()
@@ -30,7 +32,7 @@ const Detail = () => {
     return transferArr
   }
 
-  const getAncorMd = getTransferMd(markdown)
+  const getAncorMd = getTransferMd(props.article_content)
 
   return (
     <div className={styles.container}>
@@ -86,11 +88,10 @@ const Detail = () => {
 }
 Detail.getInitialProps = async (ctx) => {
   const id = ctx.query.id
-  console.log(ctx);
   const promise = new Promise((resolve) => {
-    axios('http://localhost:7001/getArticleById?id=' + id).then(res => {
-      console.log(res);
-      resolve(res)
+    axios(apiUrl.getArticleById + '?id=' + id).then(res => {
+      console.log(res.data.data[0]);
+      resolve(res.data.data[0])
     })
   })
   const res = await promise
