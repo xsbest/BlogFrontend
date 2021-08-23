@@ -14,6 +14,7 @@ const Header = () => {
   useEffect(() => {
     const fetchData = async () => {
       const res = await axios(apiUrl.getTypeInfo)
+      console.log(res);
       setNavArray(res.data.data)
     }
     fetchData()
@@ -22,7 +23,7 @@ const Header = () => {
     if (e.key === 'home') {
       Router.push('/')
     } else {
-      Router.push('/List?id=' + e.key)
+      Router.push('/list?id=' + e.key)
     }
   }
   return (
@@ -38,13 +39,13 @@ const Header = () => {
 
       <div className={styles.right}>
         <Menu mode="horizontal">
-          <Menu.Item key="0" onClick={handleClick} icon={<HomeOutlined />}>
+          <Menu.Item key="home" onClick={handleClick} icon={<HomeOutlined />}>
             首页
           </Menu.Item>
-          <Menu.Item key="1" onClick={handleClick} icon={<VideoCameraOutlined />}>
+          <Menu.Item key="video" onClick={handleClick} icon={<VideoCameraOutlined />}>
             视频
           </Menu.Item>
-          <Menu.Item key="2" onClick={handleClick} icon={<SmileOutlined />}>
+          <Menu.Item key="life" onClick={handleClick} icon={<SmileOutlined />}>
             生活
           </Menu.Item>
         </Menu>
